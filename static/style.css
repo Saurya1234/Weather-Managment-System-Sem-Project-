@@ -1,0 +1,216 @@
+/* ======================
+   RESET & FONT
+====================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* ======================
+   BODY & BACKGROUND
+====================== */
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+/* Default background */
+body.default {
+    background-image: url("https://images.unsplash.com/photo-1503264116251-35a269479413");
+}
+
+/* Weather backgrounds */
+body.clear {
+    background-image: url("https://images.unsplash.com/photo-1502082553048-f009c37129b9");
+}
+
+body.clouds {
+    background-image: url("https://images.unsplash.com/photo-1499346030926-9a72daac6c63");
+}
+
+body.rain,
+body.drizzle {
+    background-image: url("https://images.unsplash.com/photo-1501696461415-6bd6660c6742");
+}
+
+body.mist,
+body.haze,
+body.fog,
+body.smoke {
+    background-image: url("https://images.unsplash.com/photo-1485236715568-ddc5ee6ca227");
+}
+
+/* Dark overlay */
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    z-index: 0;
+}
+
+/* ======================
+   3D DARK MODE TOGGLE
+====================== */
+#dark-toggle {
+    display: none;
+}
+
+.toggle-wrapper {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 3;
+}
+
+.toggle-3d {
+    width: 80px;
+    height: 36px;
+    border-radius: 30px;
+    cursor: pointer;
+    position: relative;
+
+    background: linear-gradient(145deg, #e5e7eb, #ffffff);
+    box-shadow:
+        inset 2px 2px 6px rgba(0,0,0,0.15),
+        inset -2px -2px 6px rgba(255,255,255,0.9),
+        4px 6px 14px rgba(0,0,0,0.35);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+/* Icons */
+.toggle-3d .icon {
+    font-size: 18px;
+    z-index: 3;
+    transition: 0.3s;
+}
+
+.toggle-3d .moon {
+    opacity: 0.4;
+}
+
+/* Slider knob */
+.toggle-3d .slider {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    top: 3px;
+    left: 4px;
+
+    background: linear-gradient(145deg, #ffffff, #d1d5db);
+    box-shadow:
+        2px 3px 6px rgba(0,0,0,0.35),
+        inset 1px 1px 2px rgba(255,255,255,0.8);
+
+    transition: 0.35s cubic-bezier(.4,0,.2,1);
+    z-index: 2;
+}
+
+/* ===== DARK MODE ON ===== */
+#dark-toggle:checked ~ .toggle-wrapper .toggle-3d {
+    background: linear-gradient(145deg, #0f172a, #1e293b);
+}
+
+#dark-toggle:checked ~ .toggle-wrapper .toggle-3d .slider {
+    left: 45px;
+    background: linear-gradient(145deg, #334155, #020617);
+}
+
+#dark-toggle:checked ~ .toggle-wrapper .toggle-3d .sun {
+    opacity: 0.4;
+}
+
+#dark-toggle:checked ~ .toggle-wrapper .toggle-3d .moon {
+    opacity: 1;
+}
+
+/* ======================
+   MAIN CARD
+====================== */
+.container {
+    position: relative;
+    z-index: 1;
+
+    width: 380px;
+    padding: 26px;
+    border-radius: 20px;
+    text-align: center;
+
+    background: rgba(255,255,255,0.95);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.45);
+}
+
+/* Dark mode card */
+#dark-toggle:checked ~ .container {
+    background: rgba(20,20,20,0.95);
+    color: #e5e7eb;
+}
+
+/* ======================
+   FORM & TEXT
+====================== */
+h1 {
+    margin-bottom: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 11px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 12px;
+}
+
+button {
+    width: 100%;
+    padding: 11px;
+    border: none;
+    border-radius: 8px;
+    background: #6366f1;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #4f46e5;
+}
+
+/* ======================
+   WEATHER INFO
+====================== */
+.city {
+    margin: 15px 0;
+    color: #4f46e5;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.box {
+    background: white;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+/* Dark mode boxes */
+#dark-toggle:checked ~ .container .box {
+    background: #1f2933;
+}
